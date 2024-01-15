@@ -16,7 +16,7 @@ int main(void)
 
 	pkgpu_window_info window_info = (pkgpu_window_info){.width = 400, .height = 800};
 	pkgpu_backend_state_result gpu_backend_result = pkgpu_initialize_backend(window_info);
-  pkgpu_backend_state gpu_backend = gpu_backend_result.result;
+  	pkgpu_backend_state gpu_backend = gpu_backend_result.result;
 	unsigned char running = 1;
 	
 	if (gpu_backend_result.result_info.code != 0)
