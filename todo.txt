@@ -1,0 +1,7 @@
+Create CMakeLists.txt +Generic @compiling
+Test compile and create an example +OpenGL4 @screen @backend_state
+x Add Initialize Backend +OpenGL4 @backend_state
+x Add PKGPU_API tag +Generic @all
+x Clear Screen +OpenGL4 @screen
+x Color Type +Generic @types
+x Prepare and Finish frame functions +OpenGL4 @screen
