@@ -1,14 +1,14 @@
 #include "backend/ogl4/backend_state.h"
 #include "backend/ogl4/deps.h"
 
-pkgpu_backend_state_result pkgpu_initialize_backend(int width, int height, pkgpu_backend_parameters specific_parameters)
+pkgpu_backend_state_result pkgpu_initialize_backend(int width, int height, pkgpu_backend_parameters* specific_parameters)
 {
 	pkgpu_backend_state state;
 	state.active_shader_program = 0;
 	state.width = width;
 	state.height = height;
 
-	if (specific_parameters.get_proc_address == NULL)
+	if (specific_parameters->get_proc_address == NULL)
 	{
 		if (!gladLoadGL())
 		{
@@ -18,7 +18,7 @@ pkgpu_backend_state_result pkgpu_initialize_backend(int width, int height, pkgpu
 
 	else
 	{
-		if (!gladLoadGLLoader((GLADloadproc)(specific_parameters.get_proc_address)))
+		if (!gladLoadGLLoader((GLADloadproc)(specific_parameters->get_proc_address)))
 		{
 			return pkgpu_result_err(pkgpu_backend_state, BACKEND_STATE_RESULT_GLAD_LOADGL_FAILED, "gladLoadGL() failed", (pkgpu_backend_state){0});
 		}

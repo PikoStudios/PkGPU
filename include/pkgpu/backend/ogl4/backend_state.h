@@ -13,12 +13,14 @@ typedef struct pkgpu_opengl4_backend_state
 	int height;
 } pkgpu_backend_state;
 
+typedef void* (*pkgpu_opengl4_getprocaddress_fun)(const char* name);
+
 /// @brief OpenGL 4 Specific Parameters
 /// @field void* (*get_proc_address)(const char* name) - GLADloadproc function IE: When using GLFW3 you would set this field to glfwGetProcAddress \
 /// if NULL, gladLoadGL will be ran instead.
 typedef struct pkgpu_opengl4_backend_parameters
 {
-	void* (*get_proc_address)(const char* name);
+	pkgpu_opengl4_getprocaddress_fun get_proc_address;
 } pkgpu_backend_parameters;
 
 enum pkgpu_backend_state_result_code
@@ -33,7 +35,7 @@ typedef pkgpu_result(pkgpu_backend_state) pkgpu_backend_state_result;
 /// @param int height - Height
 /// @param pkgpu_backend_parameters specific_parameters - Backend-specific parameters IE: In the OpenGL 4 Backend, pkgpu_backend_parameters has a field named get_proc_address for function loading
 /// @return pkgpu_backend_state_result - Result structure containing pkgpu_result_info and pkgpu_backend_state result
-PKGPU_API pkgpu_backend_state_result pkgpu_initialize_backend(int width, int height, pkgpu_backend_parameters specific_parameters);
+PKGPU_API pkgpu_backend_state_result pkgpu_initialize_backend(int width, int height, pkgpu_backend_parameters* specific_parameters);
 
 /// @brief Destroy Backend State
 /// @param pkgpu_backend_state* state - Pointer to state
